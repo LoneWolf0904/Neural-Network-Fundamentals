@@ -49,3 +49,52 @@ The network successfully learned the XOR pattern:
 
 * Disparate Power (1,0 or 0,1): NPC chooses to Flee.
 
+---
+
+## 📂 Project 2: Optimized Architecture (Keras/TensorFlow)
+**File:** `02_Optimized_ANN_Architecture.ipynb`
+
+After establishing the mathematical baseline in Project 1, I implemented a scalable architecture using **Keras** to handle multi-class classification (4 possible NPC actions).
+
+### 🧠 The Architecture
+* **Input Layer:** 2 Neurons (Range to Enemy, Enemy Strength)
+* **Hidden Layers:** 2 Layers (10 Neurons each) using **ReLU** activation to solve the vanishing gradient problem.
+* **Output Layer:** 4 Neurons (Attack, Flock, Evade, Surrender) using **Softmax** for probability distribution.
+
+### ⚡ Technical Improvements
+* **Optimizer (Adam):** Replaced fixed learning rate with **Adam** (Adaptive Moment Estimation) for faster convergence.
+* **Validation Strategy:** Implemented `train_test_split` (80/20) to validate the model on unseen data and prevent overfitting.
+* **Loss Function:** utilized **Categorical Crossentropy**, the standard for multi-class classification tasks.
+
+### 📊 Results
+* **Accuracy:** Achieved **100% (1.0)** on the validation set.
+* **Loss:** Reduced to **~0.002**, demonstrating highly confident predictions compared to the manual implementation.
+
+---
+
+## 📂 Project 3: Generative AI & Transfer Learning
+**File:** `03_Generative_AI_Stable_Diffusion.ipynb`
+
+Moving beyond classification, this project explores **Generative AI** by deploying a pre-trained Latent Diffusion Model (LDM) for text-to-image synthesis.
+
+### 🤖 The Tech Stack
+* **Library:** Hugging Face `diffusers` & `transformers`.
+* **Model:** Stable Diffusion (Pipeline).
+* **Optimization:** PyTorch with CUDA acceleration and FP16 (half-precision) to reduce VRAM usage.
+
+### ⚙️ How it Works
+1.  **Text Encoding:** The prompt ("A Cat Face") is converted into vector embeddings.
+2.  **Latent Diffusion:** The model starts with random noise and iteratively "denoises" it, guided by the text embeddings, to form a coherent image in latent space.
+3.  **Decoding:** The VAE (Variational Autoencoder) decodes the latent representation into the final pixel-art image.
+
+### 💻 Code Snippet (GPU Acceleration)
+```python
+# optimizing for GPU memory and speed using half-precision (float16)
+pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
+pipe = pipe.to("cuda")
+
+image = pipe(prompt).images[0]
+```
+## 🎨 Outcome
+Successfully generated high-quality images from natural language prompts, demonstrating proficiency with Modern AI Pipelines and Transfer Learning.
+
