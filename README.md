@@ -1,4 +1,4 @@
-Neural Network Fundamentals (From Scratch)
+# Neural Network Fundamentals (From Scratch)
 
 This repository explores the mathematical foundations of Deep Learning by implementing Artificial Neural Networks (ANNs) without high-level abstractions like TensorFlow or PyTorch.
 
